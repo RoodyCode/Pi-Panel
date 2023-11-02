@@ -119,10 +119,6 @@ const socket = io()
       2
     )}%`
     upTime.innerText = secondsToHms(info.upTime)
-    if (info.drive) {
-      $cl('used-space')[0].style.flex = info.drive.usedPercentage
-      $cl('free-space')[0].style.flex = info.drive.freePercentage
-    }
   })
 
   .on('pong', () => (currPing.innerText = `${Date.now() - pingTime}ms`))

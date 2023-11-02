@@ -27,20 +27,12 @@ app.get('/', (req, res) =>
   res.sendFile(join(__dirname + '/../client/public/pages/interface.html'))
 )
 
-let drive
-;(async () => {
-  drive = await osu.drive.info()
-})()
-setInterval(async () => {
-  drive = await osu.drive.info()
-}, 1000 * 60)
-
 //Send OS stats to each connected client
 setInterval(async () => {
   const cpuUsage = await osu.cpu.usage()
   const upTime = await osu.os.uptime()
   const memory = await osu.mem.info()
-  io.emit('os-info', { cpuUsage, upTime, memory, drive })
+  io.emit('os-info', { cpuUsage, upTime, memory })
 }, 1000)
 
 // Incomming Sockets
